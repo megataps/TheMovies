@@ -1,9 +1,10 @@
 package com.megatap.themovies.di.component;
 
-import com.megatap.themovies.MainActivity;
 import com.megatap.themovies.di.module.NetworkModule;
 import com.megatap.themovies.di.module.ServiceModule;
 import com.megatap.themovies.di.scope.ApplicationScope;
+import com.megatap.themovies.ui.activity.MainActivity;
+import com.megatap.themovies.ui.fragment.MovieListFragment;
 
 import dagger.Component;
 
@@ -19,13 +20,7 @@ import dagger.Component;
         dependencies = ApplicationComponent.class)
 public interface BaseComponent {
 
-//    MoviesApiService getMoviesApiService();
-//
-//    MovieService getMovieService();
-//
-//    OkHttpClient getOkHttpClient();
-//
-//    Retrofit getRetrofit();
+    void inject(MovieListFragment movieListFragment);
 
-    void inject(MainActivity Activity);
+    void inject(MainActivity activity);
 }

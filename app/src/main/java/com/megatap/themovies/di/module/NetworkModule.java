@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 import dagger.Module;
 import dagger.Provides;
+import retrofit.Converter;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 /**
@@ -33,7 +34,7 @@ public class NetworkModule {
 
     @Provides
     @ApplicationScope
-    GsonConverterFactory provideGsonConverterFactory(Gson gson) {
+    Converter.Factory provideFactory(Gson gson) {
         return GsonConverterFactory.create(gson);
     }
 
@@ -77,12 +78,12 @@ public class NetworkModule {
 
     @Provides
     @ApplicationScope
-    Retrofit provideRetrofit(OkHttpClient okHttpClient, GsonConverterFactory gsonConverterFactory) {
+    Retrofit provideRetrofit(OkHttpClient okHttpClient, Converter.Factory factory) {
 
         Retrofit.Builder builder = new Retrofit.Builder();
 
         builder.baseUrl(KEY_BASE_URL)
-                .addConverterFactory(gsonConverterFactory)
+                .addConverterFactory(factory)
                 .client(okHttpClient);
 
 
