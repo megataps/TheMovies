@@ -29,7 +29,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected abstract int getLayout();
     protected abstract void setupComponent(BaseComponent baseComponent);
-
     protected abstract void initUi();
 
     protected void replaceFragment(@IdRes int id, @NonNull BaseFragment fragment, boolean addToBackStack) {

@@ -1,6 +1,7 @@
 package com.megatap.themovies.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,13 +14,17 @@ import android.view.ViewGroup;
 
 import com.megatap.themovies.R;
 import com.megatap.themovies.di.component.BaseComponent;
+import com.megatap.themovies.model.Movie;
 import com.megatap.themovies.model.MovieSortType;
 import com.megatap.themovies.model.MoviesListWrapper;
 import com.megatap.themovies.service.Callback;
 import com.megatap.themovies.service.MovieService;
+import com.megatap.themovies.ui.activity.MovieDetailsActivity;
 import com.megatap.themovies.ui.adapter.MovieListAdapter;
+import com.megatap.themovies.ui.adapter.RecyclerViewItemClickListener;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -30,10 +35,14 @@ import butterknife.Bind;
  */
 public class MovieListFragment extends BaseFragment  implements SwipeRefreshLayout.OnRefreshListener{
 
+    //Bundle keys
+    private static final String ARG_MOVIE_SORT_TYPE = "ARG_MOVIE_SORT_TYPE";
+    private static final String ARG_MOVIE_ID = "ARG_MOVIE_ID";
+
     private MovieListAdapter mMoviesAdapter;
     private MovieSortType mMovieSortType;
 //    private int page = 1;
-//    List<Movie> mMovieList;
+    List<Movie> mMovieList;
 
     @Inject
     MovieService mMovieService;
@@ -44,13 +53,10 @@ public class MovieListFragment extends BaseFragment  implements SwipeRefreshLayo
     @Bind(R.id.adapter_view)
     RecyclerView mRecyclerView;
 
-    //Bundle keys
-    private static final String KEY_MOVIE_SORT_TYPE = "key_movie_sort_type";
-
     @NonNull
     public static BaseFragment newInstance(@NonNull MovieSortType movieSortType) {
         Bundle b = new Bundle();
-        b.putSerializable(KEY_MOVIE_SORT_TYPE, movieSortType);
+        b.putSerializable(ARG_MOVIE_SORT_TYPE, movieSortType);
         MovieListFragment f = new MovieListFragment();
         f.setArguments(b);
         return f;
@@ -62,15 +68,14 @@ public class MovieListFragment extends BaseFragment  implements SwipeRefreshLayo
 
         Bundle args = getArguments();
         if (args != null) {
-            if (args.containsKey(KEY_MOVIE_SORT_TYPE)) {
-                Serializable serializable = args.getSerializable(KEY_MOVIE_SORT_TYPE);
+            if (args.containsKey(ARG_MOVIE_SORT_TYPE)) {
+                Serializable serializable = args.getSerializable(ARG_MOVIE_SORT_TYPE);
                 if (serializable instanceof MovieSortType) {
                     mMovieSortType = (MovieSortType) serializable;
                 }
             }
         }
     }
-
 
     @Nullable
     @Override
@@ -102,6 +107,7 @@ public class MovieListFragment extends BaseFragment  implements SwipeRefreshLayo
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
         mMoviesAdapter = new MovieListAdapter();
+
 //        mMoviesAdapter.setInfiniteAdapterListener(new OnAdapterLastItemReachListener() {
 //            @Override
 //            public void onLastItemReached() {
@@ -109,10 +115,26 @@ public class MovieListFragment extends BaseFragment  implements SwipeRefreshLayo
 //                requestMoviesFromBackend(page);
 //            }
 //        });
-//        mMoviesAdapter.setMovieItemClickListener(this);
 
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRecyclerView.setAdapter(mMoviesAdapter);
+
+        mRecyclerView.addOnItemTouchListener(new RecyclerViewItemClickListener(getActivity(),
+                new RecyclerViewItemClickListener.OnItemGestureListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+//                        view.performClick();
+                        Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
+                        intent.putExtra(ARG_MOVIE_ID, mMovieList.get(position).getId());
+                        startActivity(intent);
+                        getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+
+                    }
+                }));
     }
 
     @Override
@@ -120,7 +142,8 @@ public class MovieListFragment extends BaseFragment  implements SwipeRefreshLayo
         mMovieService.getMovies(1, mMovieSortType, new Callback<MoviesListWrapper>() {
             @Override
             public void onSuccess(MoviesListWrapper response) {
-                mMoviesAdapter.setData(response.getResults());
+                mMovieList = response.getResults();
+                mMoviesAdapter.setData(mMovieList);
 
                 mSwipeRefreshLayout.setRefreshing(false);
             }

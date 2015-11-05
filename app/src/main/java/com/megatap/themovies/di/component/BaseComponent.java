@@ -4,6 +4,7 @@ import com.megatap.themovies.di.module.NetworkModule;
 import com.megatap.themovies.di.module.ServiceModule;
 import com.megatap.themovies.di.scope.ApplicationScope;
 import com.megatap.themovies.ui.activity.MainActivity;
+import com.megatap.themovies.ui.fragment.MovieDetailsFragment;
 import com.megatap.themovies.ui.fragment.MovieListFragment;
 
 import dagger.Component;
@@ -21,6 +22,8 @@ import dagger.Component;
 public interface BaseComponent {
 
     void inject(MovieListFragment movieListFragment);
+
+    void inject(MovieDetailsFragment movieListFragment);
 
     void inject(MainActivity activity);
 }
