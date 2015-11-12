@@ -1,9 +1,12 @@
 package com.megatap.themovies.ui.activity;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.megatap.themovies.R;
 import com.megatap.themovies.di.component.BaseComponent;
+import com.megatap.themovies.ui.base.BaseActivity;
+import com.megatap.themovies.ui.base.BaseViewModel;
 import com.megatap.themovies.ui.fragment.MovieDetailsFragment;
 
 /**
@@ -45,5 +48,11 @@ public class MovieDetailsActivity extends BaseActivity {
     public void onBackPressed() {
         finish();
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+    }
+
+    @Nullable
+    @Override
+    protected BaseViewModel createViewModel(@Nullable BaseViewModel.State savedViewModelState) {
+        return null;
     }
 }

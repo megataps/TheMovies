@@ -22,6 +22,7 @@ import com.megatap.themovies.service.MovieService;
 import com.megatap.themovies.ui.activity.MovieDetailsActivity;
 import com.megatap.themovies.ui.adapter.MovieListAdapter;
 import com.megatap.themovies.ui.adapter.RecyclerViewItemClickListener;
+import com.megatap.themovies.ui.base.BaseFragment;
 
 import java.io.Serializable;
 import java.util.List;
@@ -33,16 +34,14 @@ import butterknife.Bind;
 /**
  * Created by Jackie Nguyen <nguyenngoc100@gmail.com> on 10/26/15.
  */
-public class MovieListFragment extends BaseFragment  implements SwipeRefreshLayout.OnRefreshListener{
+public class MovieListFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    //Bundle keys
     private static final String ARG_MOVIE_SORT_TYPE = "ARG_MOVIE_SORT_TYPE";
     private static final String ARG_MOVIE_ID = "ARG_MOVIE_ID";
 
     private MovieListAdapter mMoviesAdapter;
     private MovieSortType mMovieSortType;
-//    private int page = 1;
-    List<Movie> mMovieList;
+    private List<Movie> mMovieList;
 
     @Inject
     MovieService mMovieService;
@@ -108,14 +107,6 @@ public class MovieListFragment extends BaseFragment  implements SwipeRefreshLayo
 
         mMoviesAdapter = new MovieListAdapter();
 
-//        mMoviesAdapter.setInfiniteAdapterListener(new OnAdapterLastItemReachListener() {
-//            @Override
-//            public void onLastItemReached() {
-//                page += 1;
-//                requestMoviesFromBackend(page);
-//            }
-//        });
-
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRecyclerView.setAdapter(mMoviesAdapter);
 
@@ -123,7 +114,6 @@ public class MovieListFragment extends BaseFragment  implements SwipeRefreshLayo
                 new RecyclerViewItemClickListener.OnItemGestureListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-//                        view.performClick();
                         Intent intent = new Intent(getActivity(), MovieDetailsActivity.class);
                         intent.putExtra(ARG_MOVIE_ID, mMovieList.get(position).getId());
                         startActivity(intent);

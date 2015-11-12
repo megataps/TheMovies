@@ -1,4 +1,4 @@
-package com.megatap.themovies.ui.fragment;
+package com.megatap.themovies.ui.base;
 
 
 import android.content.Context;

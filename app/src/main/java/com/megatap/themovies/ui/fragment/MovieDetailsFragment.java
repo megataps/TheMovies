@@ -26,6 +26,7 @@ import com.megatap.themovies.model.Genre;
 import com.megatap.themovies.model.MovieDetails;
 import com.megatap.themovies.service.Callback;
 import com.megatap.themovies.service.MovieService;
+import com.megatap.themovies.ui.base.BaseFragment;
 
 import java.util.Date;
 
