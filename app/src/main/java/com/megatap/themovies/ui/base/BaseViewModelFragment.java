@@ -2,11 +2,12 @@ package com.megatap.themovies.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 
 /**
  * Created by Jackie Nguyen <nguyenngoc100@gmail.com> on 11/12/15.
  */
-public abstract class BaseViewModelFragment extends BaseFragment {
+public abstract class BaseViewModelFragment extends Fragment {
 
     private static final String EXTRA_VIEW_MODEL_STATE = "extra_view_model_state";
 

@@ -23,6 +23,7 @@ import com.megatap.themovies.ui.activity.MovieDetailsActivity;
 import com.megatap.themovies.ui.adapter.MovieListAdapter;
 import com.megatap.themovies.ui.adapter.RecyclerViewItemClickListener;
 import com.megatap.themovies.ui.base.BaseFragment;
+import com.megatap.themovies.ui.base.BaseViewModel;
 
 import java.io.Serializable;
 import java.util.List;
@@ -94,7 +95,6 @@ public class MovieListFragment extends BaseFragment implements SwipeRefreshLayou
         prepareData();
     }
 
-
     @Override
     protected void setupComponent(BaseComponent appComponent) {
         appComponent.inject(this);
@@ -150,5 +150,11 @@ public class MovieListFragment extends BaseFragment implements SwipeRefreshLayou
     public void onRefresh() {
         mSwipeRefreshLayout.setRefreshing(true);
         prepareData();
+    }
+
+    @Nullable
+    @Override
+    protected BaseViewModel createViewModel(@Nullable BaseViewModel.State savedViewModelState) {
+        return null;
     }
 }

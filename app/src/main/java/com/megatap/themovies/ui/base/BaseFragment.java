@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Jackie Nguyen <nguyenngoc100@gmail.com> on 10/24/15.
  */
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends BaseViewModelFragment {
 
     @Override
     public void onAttach(Context context) {
