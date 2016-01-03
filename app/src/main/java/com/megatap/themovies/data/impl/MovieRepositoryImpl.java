@@ -2,7 +2,7 @@ package com.megatap.themovies.data.impl;
 
 import com.megatap.themovies.data.MovieRepository;
 import com.megatap.themovies.data.MoviesApiService;
-import com.megatap.themovies.model.MovieDetails;
+import com.megatap.themovies.model.MovieDetail;
 import com.megatap.themovies.model.MovieSortType;
 import com.megatap.themovies.model.MoviesListWrapper;
 import com.megatap.themovies.service.Callback;
@@ -45,11 +45,11 @@ public class MovieRepositoryImpl implements MovieRepository{
     }
 
     @Override
-    public void getMovieDetails(long id, final Callback<MovieDetails> listener) {
-        Call<MovieDetails> callResponse = mApiService.getMovieDetails(id, API_KEY);
-        callResponse.enqueue(new retrofit.Callback<MovieDetails>() {
+    public void getMovieDetails(long id, final Callback<MovieDetail> listener) {
+        Call<MovieDetail> callResponse = mApiService.getMovieDetails(id, API_KEY);
+        callResponse.enqueue(new retrofit.Callback<MovieDetail>() {
             @Override
-            public void onResponse(Response<MovieDetails> response, Retrofit retrofit) {
+            public void onResponse(Response<MovieDetail> response, Retrofit retrofit) {
                 listener.onSuccess(response.body());
             }
 

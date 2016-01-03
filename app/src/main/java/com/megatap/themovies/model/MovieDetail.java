@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class MovieDetails implements Parcelable {
+public class MovieDetail implements Parcelable {
 
     private List<Genre> genres;
 
@@ -67,7 +67,7 @@ public class MovieDetails implements Parcelable {
 
     @Override
     public String toString() {
-        return "MovieDetails{" +
+        return "MovieDetail{" +
                 "genres=" + genres +
                 ", id=" + id +
                 ", originalTitle='" + originalTitle + '\'' +
@@ -103,10 +103,10 @@ public class MovieDetails implements Parcelable {
         dest.writeDouble(this.popularity);
     }
 
-    public MovieDetails() {
+    public MovieDetail() {
     }
 
-    protected MovieDetails(Parcel in) {
+    protected MovieDetail(Parcel in) {
         this.genres = in.createTypedArrayList(Genre.CREATOR);
         this.id = in.readLong();
         this.originalTitle = in.readString();
@@ -119,13 +119,13 @@ public class MovieDetails implements Parcelable {
         this.popularity = in.readDouble();
     }
 
-    public static final Parcelable.Creator<MovieDetails> CREATOR = new Parcelable.Creator<MovieDetails>() {
-        public MovieDetails createFromParcel(Parcel source) {
-            return new MovieDetails(source);
+    public static final Parcelable.Creator<MovieDetail> CREATOR = new Parcelable.Creator<MovieDetail>() {
+        public MovieDetail createFromParcel(Parcel source) {
+            return new MovieDetail(source);
         }
 
-        public MovieDetails[] newArray(int size) {
-            return new MovieDetails[size];
+        public MovieDetail[] newArray(int size) {
+            return new MovieDetail[size];
         }
     };
 }

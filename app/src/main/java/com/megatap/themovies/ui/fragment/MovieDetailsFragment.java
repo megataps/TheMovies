@@ -23,7 +23,7 @@ import com.bumptech.glide.Glide;
 import com.megatap.themovies.R;
 import com.megatap.themovies.di.component.BaseComponent;
 import com.megatap.themovies.model.Genre;
-import com.megatap.themovies.model.MovieDetails;
+import com.megatap.themovies.model.MovieDetail;
 import com.megatap.themovies.service.Callback;
 import com.megatap.themovies.service.MovieService;
 
@@ -46,7 +46,7 @@ public class MovieDetailsFragment extends BaseFragment{
     MovieService mMovieService;
 
     private long mMovieId;
-    private MovieDetails mMovieDetails;
+    private MovieDetail mMovieDetails;
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -148,9 +148,9 @@ public class MovieDetailsFragment extends BaseFragment{
 
         Log.e(TAG, "mMovieId:" + mMovieId);
 
-        mMovieService.getMovieDetails(mMovieId, new Callback<MovieDetails>() {
+        mMovieService.getMovieDetails(mMovieId, new Callback<MovieDetail>() {
             @Override
-            public void onSuccess(MovieDetails response) {
+            public void onSuccess(MovieDetail response) {
                 bindData(response);
             }
 
@@ -161,7 +161,7 @@ public class MovieDetailsFragment extends BaseFragment{
         });
     }
 
-    private void bindData(MovieDetails data) {
+    private void bindData(MovieDetail data) {
         mMovieDetails = data;
 
         collapsingToolbar.setTitle(data.getOriginalTitle());

@@ -1,6 +1,6 @@
 package com.megatap.themovies.data;
 
-import com.megatap.themovies.model.MovieDetails;
+import com.megatap.themovies.model.MovieDetail;
 import com.megatap.themovies.model.MoviesListWrapper;
 
 import retrofit.Call;
@@ -19,5 +19,5 @@ public interface MoviesApiService {
 
 
     @GET("3/movie/{movieId}")
-    Call<MovieDetails> getMovieDetails(@Path("movieId") long movieId, @Query("api_key") String apiKey);
+    Call<MovieDetail> getMovieDetails(@Path("movieId") long movieId, @Query("api_key") String apiKey);
 }

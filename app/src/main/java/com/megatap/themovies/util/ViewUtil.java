@@ -1,5 +1,6 @@
 package com.megatap.themovies.util;
 
+import android.support.v4.view.ViewCompat;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,9 @@ public class ViewUtil {
         }
 
         if (!(view instanceof ViewGroup)) {
-            return view.hasOnClickListeners();
+            return ViewCompat.hasOnClickListeners(view);
         } else if (((ViewGroup)view).getChildCount() == 0) {
-            return view.hasOnClickListeners();
+            return ViewCompat.hasOnClickListeners(view);
         }
 
         ViewGroup viewGroup = (ViewGroup)view;

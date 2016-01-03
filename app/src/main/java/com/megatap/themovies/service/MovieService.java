@@ -1,6 +1,6 @@
 package com.megatap.themovies.service;
 
-import com.megatap.themovies.model.MovieDetails;
+import com.megatap.themovies.model.MovieDetail;
 import com.megatap.themovies.model.MovieSortType;
 import com.megatap.themovies.model.MoviesListWrapper;
 
@@ -11,6 +11,6 @@ public interface MovieService {
 
     void getMovies(int page, MovieSortType movieSortType, final Callback<MoviesListWrapper> listener);
 
-    void getMovieDetails(long id, final Callback<MovieDetails> listener);
+    void getMovieDetails(long id, final Callback<MovieDetail> listener);
 
 }

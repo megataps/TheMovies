@@ -7,4 +7,7 @@
     <color name="grey_light">#e1e3db</color>
     <color name="blue_dark">#193441</color>
     <color name="oker_dark">#91AA9D</color>
+
+    <color name="error_color">#FFDD2C00</color>
+
 </resources>

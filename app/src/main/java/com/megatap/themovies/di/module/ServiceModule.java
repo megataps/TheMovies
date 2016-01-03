@@ -5,7 +5,9 @@ import com.megatap.themovies.data.MoviesApiService;
 import com.megatap.themovies.data.impl.MovieRepositoryImpl;
 import com.megatap.themovies.di.scope.ApplicationScope;
 import com.megatap.themovies.service.MovieService;
+import com.megatap.themovies.service.UserService;
 import com.megatap.themovies.service.impl.MovieServiceImpl;
+import com.megatap.themovies.service.impl.UserServiceImpl;
 
 import dagger.Module;
 import dagger.Provides;
@@ -33,5 +35,11 @@ public class ServiceModule {
     @Provides
     MovieService provideMovieService(MovieRepository movieRepository) {
         return new MovieServiceImpl(movieRepository);
+    }
+
+    @ApplicationScope
+    @Provides
+    UserService provideUserService() {
+        return new UserServiceImpl();
     }
 }

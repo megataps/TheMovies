@@ -1,7 +1,7 @@
 package com.megatap.themovies.service.impl;
 
 import com.megatap.themovies.data.MovieRepository;
-import com.megatap.themovies.model.MovieDetails;
+import com.megatap.themovies.model.MovieDetail;
 import com.megatap.themovies.model.MovieSortType;
 import com.megatap.themovies.model.MoviesListWrapper;
 import com.megatap.themovies.service.Callback;
@@ -40,10 +40,10 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public void getMovieDetails(long id, final Callback<MovieDetails> listener) {
-        mMovieRepository.getMovieDetails(id, new Callback<MovieDetails>() {
+    public void getMovieDetails(long id, final Callback<MovieDetail> listener) {
+        mMovieRepository.getMovieDetails(id, new Callback<MovieDetail>() {
             @Override
-            public void onSuccess(MovieDetails response) {
+            public void onSuccess(MovieDetail response) {
                 listener.onSuccess(response);
             }
 
