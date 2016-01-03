@@ -23,8 +23,8 @@ public class UserServiceImpl implements UserService {
                             Thread.sleep(3000);
                             if (email.equals("test@example.com")) {
                                 User authenticatedUser = new User();
-//                                authenticatedUser.setEmail("test@example.com");
-//                                authenticatedUser.setAuthenticated(true);
+                                authenticatedUser.setEmail("test@example.com");
+                                authenticatedUser.setAuthenticated(true);
                                 subscriber.onNext(authenticatedUser);
                                 subscriber.onCompleted();
                             } else {
