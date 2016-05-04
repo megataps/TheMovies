@@ -4,6 +4,7 @@ import com.megatap.themovies.di.module.NetworkModule;
 import com.megatap.themovies.di.module.ServiceModule;
 import com.megatap.themovies.di.module.ViewModelModule;
 import com.megatap.themovies.di.scope.ApplicationScope;
+import com.megatap.themovies.ui.activity.BaseActivity;
 import com.megatap.themovies.ui.activity.LoginActivity;
 import com.megatap.themovies.ui.activity.MainActivity;
 import com.megatap.themovies.ui.fragment.MovieDetailsFragment;
